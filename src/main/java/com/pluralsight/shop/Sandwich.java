@@ -8,11 +8,13 @@ public abstract class Sandwich extends Topping {
     protected boolean isToasted;
     protected List<Topping> toppings = new ArrayList<>();
 
-    public Sandwich(String size, String bread, boolean isToasted) {
+    public Sandwich(String name, boolean isPremium, boolean isExtra, String size, String bread, boolean isToasted) {
+        super(name, isPremium, isExtra);
         this.size = size;
         this.bread = bread;
         this.isToasted = isToasted;
     }
+
 
     public void addTopping(Topping topping){
         toppings.add(topping);
