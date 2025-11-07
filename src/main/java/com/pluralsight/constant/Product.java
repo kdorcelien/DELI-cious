@@ -1,5 +1,7 @@
 package com.pluralsight.constant;
 
 public interface Product {
-void  getPrice();
+    String getName();
+double  getPrice(String size);
+
 }
