@@ -3,13 +3,15 @@ package com.pluralsight.shop;
 public abstract class Topping {
     protected String name;
     protected boolean isPremium;
+    protected boolean isExtra;
 
-    public Topping(String name, boolean isPremium) {
+    public Topping(String name, boolean isPremium, boolean isExtra) {
         this.name = name;
         this.isPremium = isPremium;
+        this.isExtra = isExtra;
     }
 
-    public abstract double piceBySize(String Size);
+    public abstract double piceBySize(String size);
 
     public String getName() {
         return name;
@@ -23,4 +25,7 @@ public abstract class Topping {
         return isPremium;
     }
 
+    public boolean isExtra() {
+        return isExtra;
+    }
 }
