@@ -1,4 +1,4 @@
 package com.pluralsight.shop;
 
-public class Order extends Sandwich{
+public class Order {
 }
