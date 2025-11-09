@@ -45,4 +45,25 @@ public class Order<T extends Product> implements Customize<T> {
         }
         return total;
     }
+
+    public boolean isValidOrder() {
+        boolean hasSandwich = false;
+        boolean hasDrinkOrChips = false;
+
+        for (T item : items) {
+            if (item instanceof Sandwich) hasSandwich = true;
+            if (item instanceof Drink || item instanceof Chips) hasDrinkOrChips = true;
+        }
+
+        // must have a sandwich OR (drink/chips if no sandwiches)
+        return hasSandwich || (!hasSandwich && hasDrinkOrChips);
+    }
+
+    @Override
+    public String toString() {
+        return "Order # " +
+                items +
+                "| orderDate:" + orderDate +
+                "| Total: $" + total();
+    }
 }
