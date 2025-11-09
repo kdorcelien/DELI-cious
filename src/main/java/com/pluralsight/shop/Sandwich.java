@@ -20,7 +20,9 @@ public abstract class Sandwich extends Topping {
         toppings.add(topping);
     }
 
-    public abstract double calcultePrice();
+    public double getPrice(){
+        return piceBySize(size) ;
+    }
 
     public String getSize() {
         return size;
@@ -40,7 +42,7 @@ public abstract class Sandwich extends Topping {
 
     public boolean isToasted() {
         if (isToasted){
-            System.out.println(bread + "is perfectly toated");
+            System.out.println(bread + "is perfectly toasted");
         }
         return isToasted;
     }

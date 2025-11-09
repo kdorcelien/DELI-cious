@@ -1,13 +1,13 @@
 package com.pluralsight.shop;
 
-import com.pluralsight.constant.Custumize;
+import com.pluralsight.constant.Customize;
 import com.pluralsight.constant.Product;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order<T extends Product> implements Custumize<T> {
+public class Order<T extends Product> implements Customize<T> {
     private List<T> items = new ArrayList<>();
     private Date orderDate = new Date();
 
@@ -33,10 +33,16 @@ public class Order<T extends Product> implements Custumize<T> {
     }
 
     public double total() {
-        return items.stream()
-                .mapToDouble(item -> item.getPrice(size))
-                .sum();
+        double total = 0.0;
+        for (T item : items) {
+            if (item instanceof Bread sandwich) {
+                total += item.getPrice(sandwich.getSize());
+            } else if (item instanceof Drink drink) {
+                total += item.getPrice(drink.getSize());
+            } else {
+                total += item.getPrice("");
+            }
+        }
+        return total;
     }
-
-
 }

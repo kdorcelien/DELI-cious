@@ -1,6 +1,6 @@
 package com.pluralsight.constant;
 
-public interface Custumize<T> {
+public interface Customize<T> {
     void addItem(T item);
     void removeItem(T item);
 }
