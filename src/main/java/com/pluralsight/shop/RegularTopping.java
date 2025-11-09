@@ -2,7 +2,7 @@ package com.pluralsight.shop;
 
 public class RegularTopping extends Topping {
 
-    public RegularTopping(String name, boolean isPremium, boolean isExtra) {
+    public RegularTopping(String name) {
         super(name, false, false);
     }
 
