@@ -27,7 +27,7 @@ public class Checkout {
                 price = item.getPrice("");
             }
 
-            System.out.printf("%-25s $%.2f%n", name, price);
+            System.out.printf("%s $%.2f%n", name, price);
         });
 
         System.out.println("----------------------------");
@@ -56,7 +56,7 @@ public class Checkout {
                     price = item.getPrice("");
                 }
 
-                writer.write(item.getName() + " - $" + String.format("%.2f", price) + "\n");
+                writer.write(item.getName() + "  $" + String.format("%.2f", price) + "\n");
             }
 
             writer.write("\nTOTAL: $" + String.format("%.2f", order.total()) + "\n");
