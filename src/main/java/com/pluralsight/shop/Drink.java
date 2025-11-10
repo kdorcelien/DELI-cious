@@ -12,15 +12,15 @@ public class Drink implements Product {
 
     @Override
     public String getName() {
-        return size + "" + flavor + " For: ";
+        return size + " " + flavor + " For: ";
     }
 
     @Override
     public double getPrice(String size) {
         return switch (size){
-            case "Small" -> 2.00;
-            case "Medium" -> 2.50;
-            case "Large" -> 3.00;
+            case "small" -> 2.00;
+            case "medium" -> 2.50;
+            case "large" -> 3.00;
             default -> 0.0;
         };
     }
