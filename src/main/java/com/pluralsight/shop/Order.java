@@ -55,7 +55,6 @@ public class Order<T extends Product> implements Customize<T> {
             if (item instanceof Drink || item instanceof Chips) hasDrinkOrChips = true;
         }
 
-        // must have a sandwich OR (drink/chips if no sandwiches)
         return hasSandwich || (!hasSandwich && hasDrinkOrChips);
     }
 

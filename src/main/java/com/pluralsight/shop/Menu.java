@@ -1,8 +1,6 @@
 package com.pluralsight.shop;
 
 import com.pluralsight.constant.Product;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +8,7 @@ public class Menu {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void start() {
+    public static void start(){
         Order<Product> order = new Order<>();
 
         while (true) {
@@ -48,7 +46,7 @@ public class Menu {
                     showOrderSummary(order);
                 }
                 case "2" -> {
-                    order.addItem((Product) makeDrink());
+                    order.addItem(makeDrink());
                     showOrderSummary(order);
                 }
                 case "3" -> {

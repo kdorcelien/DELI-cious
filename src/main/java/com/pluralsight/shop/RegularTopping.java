@@ -8,7 +8,7 @@ public class RegularTopping extends Topping {
 
     @Override
     public double piceBySize(String size) {
-        System.out.println("Included");
+        System.out.println("regular topping is free");
         return 0;
     }
 }

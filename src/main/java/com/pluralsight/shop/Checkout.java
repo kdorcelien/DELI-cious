@@ -40,8 +40,8 @@ public class Checkout {
 
     private static void saveReceipt(Order<? extends Product> order) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        String fileName = "src/main/resources/receipts.txt"+ formatter.format(order.getOrderDate()) ;
-
+        String fileName = "src/main/resources/receipt: "+ formatter.format(order.getOrderDate()) + ".txt" ;
+        String masterFile = "src/main/resources/receipts.txt";
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("===== DELI-cious Order Receipt =====\n");
             writer.write("Date: " + order.getOrderDate() + "\n\n");
@@ -62,6 +62,30 @@ public class Checkout {
             writer.write("\nTOTAL: $" + String.format("%.2f", order.total()) + "\n");
             writer.write("============================\n");
             System.out.println(" Receipt saved to: " + fileName);
+        }
+        catch (IOException e) {
+            System.out.println("️ Error saving receipt: " + e.getMessage());
+        }
+        try (FileWriter bufwriter = new FileWriter(masterFile,true)) {
+            bufwriter.write("===== DELI-cious Order Receipt =====\n");
+           bufwriter.write("Date: " + order.getOrderDate() + "\n\n");
+
+            for (Product item : order.getItems()) {
+                double price;
+                if (item instanceof Sandwich sandwich) {
+                    price = item.getPrice(sandwich.getSize());
+                } else if (item instanceof Drink drink) {
+                    price = item.getPrice(drink.getSize());
+                } else {
+                    price = item.getPrice("");
+                }
+
+                bufwriter.write(item.getName() + "  $" + String.format("%.2f", price) + "\n");
+            }
+
+            bufwriter.write("\nTOTAL: $" + String.format("%.2f", order.total()) + "\n");
+            bufwriter.write("============================\n");
+            System.out.println(" Receipt saved to: " + masterFile);
         } catch (IOException e) {
             System.out.println("️ Error saving receipt: " + e.getMessage());
         }
