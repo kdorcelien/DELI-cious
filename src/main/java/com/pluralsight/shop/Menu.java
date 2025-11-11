@@ -1,6 +1,7 @@
 package com.pluralsight.shop;
 
 import com.pluralsight.constant.Product;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class Menu {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void start(){
+    public static void start() {
         Order<Product> order = new Order<>();
 
         while (true) {
@@ -54,13 +55,14 @@ public class Menu {
                     showOrderSummary(order);
                 }
                 case "4" -> {
-                    Checkout.processOrder(order);
-                    return;
+                    order.addItem(makeSides());
+                    showOrderSummary(order);
                 }
-                case "0" -> {
-                    System.out.println("Order canceled.");
-                    return;
-                }
+
+                case "5" -> Checkout.processOrder(order);
+
+                case "0" -> System.out.println("Order canceled.");
+
                 default -> System.out.println("Invalid choice. Try again.");
             }
         }
@@ -164,6 +166,13 @@ public class Menu {
         return new Chips(type);
     }
 
+    private static Sides makeSides() {
+        System.out.println(availableSides());
+        System.out.println("Enter desired side: ");
+        String side = scanner.nextLine().trim().toLowerCase();
+        return new Sides(side);
+    }
+
     private static List<String> availableFlavor() {
         return List.of("Lemonade, Watermelon, Sprite, Coke, Orange, Grape");
     }
@@ -187,6 +196,10 @@ public class Menu {
 
     private static List<String> availableSauces() {
         return List.of("mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette");
+    }
+
+    private static List<String> availableSides() {
+        return List.of(availableSauces().toString(), "au jus");
     }
 }
 

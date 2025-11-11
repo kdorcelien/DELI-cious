@@ -42,6 +42,7 @@ public class Checkout {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HHmmss");
         String fileName = "src/main/resources/receipt: "+ formatter.format(order.getOrderDate()) + ".txt" ;
         String masterFile = "src/main/resources/receipts.txt";
+
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("===== DELI-cious Order Receipt =====\n");
             writer.write("Date: " + order.getOrderDate() + "\n\n");
@@ -66,6 +67,7 @@ public class Checkout {
         catch (IOException e) {
             System.out.println("️ Error saving receipt: " + e.getMessage());
         }
+
         try (FileWriter bufwriter = new FileWriter(masterFile,true)) {
             bufwriter.write("===== DELI-cious Order Receipt =====\n");
            bufwriter.write("Date: " + order.getOrderDate() + "\n\n");
@@ -85,7 +87,7 @@ public class Checkout {
 
             bufwriter.write("\nTOTAL: $" + String.format("%.2f", order.total()) + "\n");
             bufwriter.write("============================\n");
-            System.out.println(" Receipt saved to: " + masterFile);
+           // System.out.println(" Receipt saved to: " + masterFile);
         } catch (IOException e) {
             System.out.println("️ Error saving receipt: " + e.getMessage());
         }
