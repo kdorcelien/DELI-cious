@@ -104,9 +104,19 @@ public class Menu {
     }
 
     private static SignatureSandwich makeSignatureSandwich(){
+        System.out.println("Choose a Signature Sandwich:");
+        System.out.println("1) BLT");
+        System.out.println("2) Philly Cheese Steak");
+        System.out.println("0) Cancel");
 
+        int choice = scanner.nextInt();
+        scanner.nextLine();
 
-        return null;
+        return switch (choice) {
+            case 1 -> new BLT();
+            case 2 -> new PhillyCheeseSteak();
+            default -> null;
+        };
     }
 
     private static Sandwich makeSandwich() {

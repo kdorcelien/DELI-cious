@@ -2,10 +2,10 @@ package com.pluralsight.shop.sandwich;
 
 public class BLT extends SignatureSandwich{
 
-    public BLT( boolean isExtra) {
-        super("BLT", isExtra, "8", "White");
-        addTopping(new Meat("Bacon", true, isExtra));
-        addTopping(new Cheese("Cheddar", true, isExtra));
+    public BLT() {
+        super("BLT", false, "8", "White");
+        addTopping(new Meat("Bacon", true, false));
+        addTopping(new Cheese("Cheddar", true, false));
         addTopping(new RegularTopping("Lettuce"));
         addTopping(new RegularTopping("Tomato"));
         addTopping(new Sauce("Ranch"));
@@ -14,7 +14,20 @@ public class BLT extends SignatureSandwich{
 
     @Override
     public double piceBySize(String size) {
-        return 7.00;
+        double basePrice;
+
+        switch (size) {
+            case "4" -> basePrice = 5.50;
+            case "8" -> basePrice = 7.00;
+            case "12" -> basePrice = 8.50;
+            default -> basePrice = 0.0;
+        }
+
+        for (Topping topping : toppings) {
+            basePrice += topping.piceBySize(size);
+        }
+
+        return basePrice;
     }
 
     @Override
@@ -27,5 +40,8 @@ public class BLT extends SignatureSandwich{
     public String getSize() {
         return "8";
     }
-
+    @Override
+    public double getPrice(String size) {
+        return piceBySize("8");
+    }
 }
