@@ -37,7 +37,9 @@ public class Menu {
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
-            System.out.println("4) Checkout");
+            System.out.println("4) Add side");
+            System.out.println("5) Add Signature Sandwich");
+            System.out.println("6) Checkout");
             System.out.println("0) Cancel Order");
             System.out.print("Enter choice: ");
             String choice = scanner.nextLine();
@@ -59,8 +61,12 @@ public class Menu {
                     order.addItem(makeSides());
                     showOrderSummary(order);
                 }
+                case "5" -> {
+                    order.addItem(makeSignatureSandwich());
+                    showOrderSummary(order);
+                }
 
-                case "5" -> Checkout.processOrder(order);
+                case "6" -> Checkout.processOrder(order);
 
                 case "0" -> System.out.println("Order canceled.");
 
@@ -97,6 +103,11 @@ public class Menu {
         System.out.println("Please review your order before confirming.\n");
     }
 
+    private static SignatureSandwich makeSignatureSandwich(){
+
+
+        return null;
+    }
 
     private static Sandwich makeSandwich() {
         System.out.println("\n-- Create Your Sandwich --");

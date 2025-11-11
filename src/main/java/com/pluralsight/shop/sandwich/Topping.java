@@ -1,7 +1,7 @@
 package com.pluralsight.shop.sandwich;
 
 public abstract class Topping {
-    public Object toppings;
+    public String toppings;
     protected String name;
     protected boolean isPremium;
     protected boolean isExtra;

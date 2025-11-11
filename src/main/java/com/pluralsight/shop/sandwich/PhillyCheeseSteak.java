@@ -1,8 +1,15 @@
 package com.pluralsight.shop.sandwich;
 
-public class PhillyCheeseSteak extends Sandwich{
-    public PhillyCheeseSteak(String name, boolean isPremium, boolean isExtra, String size, String bread, boolean isToasted) {
-        super(name, isPremium, isExtra, size, bread, isToasted);
+public class PhillyCheeseSteak extends SignatureSandwich{
+
+
+    public PhillyCheeseSteak( boolean isExtra) {
+        super("Philly Cheese Steak", isExtra, "8", "white");
+        addTopping(new Meat("Steak", true, isExtra));
+        addTopping(new Cheese("American Cheese", true, isExtra));
+        addTopping(new RegularTopping("Peppers"));
+        addTopping(new Sauce("Mayo"));
+
     }
 
     @Override
