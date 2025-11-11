@@ -1,13 +1,11 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
-public class Meat extends Topping {
+public class Cheese extends Topping {
 
 
-    public Meat(String name, boolean isPremium, boolean isExtra) {
+    public Cheese(String name, boolean isPremium, boolean isExtra) {
         super(name, isPremium, isExtra);
     }
-
-
 
     @Override
     public double piceBySize(String size) {
@@ -16,13 +14,13 @@ public class Meat extends Topping {
 
             switch (size) {
                 case "4":
-                    basePrice = 1.00;
+                    basePrice = 0.75;
                     break;
                 case "8":
-                    basePrice = 2.00;
+                    basePrice = 1.50;
                     break;
                 case "12":
-                    basePrice = 3.00;
+                    basePrice = 2.25;
                     break;
                 default:
                     basePrice = 0.0;
@@ -30,14 +28,13 @@ public class Meat extends Topping {
 
             if (isExtra) {
                 switch (size) {
-                    case "4" -> basePrice += 0.50;
-                    case "8" -> basePrice += 1.00;
-                    case "12" -> basePrice += 1.50;
+                    case "4" -> basePrice += 0.30;
+                    case "8" -> basePrice += 0.60;
+                    case "12" -> basePrice += 0.90;
                 }
             }
-        return basePrice;
-    }
+            return basePrice;
+        }
         return 0;
     }
-
 }

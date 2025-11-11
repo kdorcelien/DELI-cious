@@ -1,6 +1,7 @@
 package com.pluralsight.shop;
 
 import com.pluralsight.constant.Product;
+import com.pluralsight.shop.sandwich.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -74,12 +75,18 @@ public class Menu {
         System.out.println("----------------------------");
         for (Product item : order.getItems()) {
             String name = item.getName();
-            double price;
+            double price = item.getPrice("");
             if (item instanceof Sandwich sandwich) {
+                System.out.println(sandwich.getSize() +"'inch " + sandwich.getBread());;
+               System.out.println(" is Toasted: " + sandwich.isToasted());
                 price = item.getPrice(sandwich.getSize());
+                for (Topping topping : sandwich.toppings){
+                    System.out.println(topping.getName() + ", is extra: " + topping.isExtra());
+                }
             } else if (item instanceof Drink drink) {
+                System.out.println(drink.getSize() +", "+ drink.getFlavor());
                 price = item.getPrice(drink.getSize());
-            } else {
+            } else if (item instanceof Chips chips){
                 price = item.getPrice("");
             }
             System.out.printf("%s $%.2f%n", name, price);
@@ -87,6 +94,7 @@ public class Menu {
         System.out.println("----------------------------");
         System.out.printf("Running Total: $%.2f%n", order.total());
         System.out.println("============================\n");
+        System.out.println("Please review your order before confirming.\n");
     }
 
 

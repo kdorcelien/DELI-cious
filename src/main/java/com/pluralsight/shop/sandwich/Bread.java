@@ -1,4 +1,4 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
 import com.pluralsight.constant.Product;
 

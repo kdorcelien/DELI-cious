@@ -2,6 +2,8 @@ package com.pluralsight.shop;
 
 import com.pluralsight.constant.Customize;
 import com.pluralsight.constant.Product;
+import com.pluralsight.shop.sandwich.Bread;
+import com.pluralsight.shop.sandwich.Sandwich;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class Sandwich extends Topping {
     protected String size, bread;
     protected boolean isToasted;
-    protected List<Topping> toppings = new ArrayList<>();
+    public List<Topping> toppings = new ArrayList<>();
 
     public Sandwich(String name, boolean isPremium, boolean isExtra, String size, String bread, boolean isToasted) {
         super(name, isPremium, isExtra);
@@ -41,9 +41,6 @@ public abstract class Sandwich extends Topping {
     }
 
     public boolean isToasted() {
-        if (isToasted){
-            System.out.println(bread + "is perfectly toasted");
-        }
         return isToasted;
     }
 

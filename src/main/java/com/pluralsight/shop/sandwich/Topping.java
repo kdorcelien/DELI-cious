@@ -1,6 +1,7 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
 public abstract class Topping {
+    public Object toppings;
     protected String name;
     protected boolean isPremium;
     protected boolean isExtra;

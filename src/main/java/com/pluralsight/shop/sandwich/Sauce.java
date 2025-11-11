@@ -1,6 +1,6 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
-public class Sauce extends Topping{
+public class Sauce extends Topping {
 
     public Sauce(String name) {
         super(name, false, false);
@@ -8,7 +8,6 @@ public class Sauce extends Topping{
 
     @Override
     public double piceBySize(String size) {
-        System.out.println("sauce is free");
         return 0;
     }
 }

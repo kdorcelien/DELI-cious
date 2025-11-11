@@ -1,4 +1,4 @@
-package com.pluralsight.shop;
+package com.pluralsight.shop.sandwich;
 
 public class RegularTopping extends Topping {
 
@@ -8,7 +8,6 @@ public class RegularTopping extends Topping {
 
     @Override
     public double piceBySize(String size) {
-        System.out.println("regular topping is free");
         return 0;
     }
 }
