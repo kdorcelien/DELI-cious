@@ -1,11 +1,16 @@
 package com.pluralsight.shop.sandwich;
 
-public class BLT<T extends RegularTopping> extends Sandwich{
-    private String bread,size;
+public class BLT extends SignatureSandwich{
 
-    public BLT(String name, boolean isExtra, String size, String bread) {
-        super(name, true, isExtra, size, bread, true);
+    public BLT( boolean isExtra) {
+        super("BLT", isExtra, "8", "White");
+        addTopping(new Meat("Bacon", true, isExtra));
+        addTopping(new Cheese("Cheddar", true, isExtra));
+        addTopping(new RegularTopping("Lettuce"));
+        addTopping(new RegularTopping("Tomato"));
+        addTopping(new Sauce("Ranch"));
     }
+
 
     @Override
     public double piceBySize(String size) {
