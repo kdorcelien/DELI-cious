@@ -131,8 +131,7 @@ public class Menu {
                     System.out.println("\n--- Customize Your Sandwich ---");
                     System.out.println("1) Add toppings");
                     System.out.println("2) Remove toppings");
-                    System.out.println("3) View current toppings");
-                    System.out.println("4) Done customizing");
+                    System.out.println("3) Done customizing");
                     System.out.print("Choose an option: ");
 
                     int option = scanner.nextInt();
@@ -149,13 +148,18 @@ public class Menu {
                             addToppings("sauce", selectedSandwich, availableSauces());
                         }
                         case 2 -> {
-                            removeToppings("meat", selectedSandwich, availableMeats());
+                            for (Topping topping : selectedSandwich.toppings) {
+                                System.out.println("Toppings present in your sandwich: " + topping.getName());
 
-                            removeToppings("cheese", selectedSandwich, availableCheeses());
+                                removeToppings("meat", selectedSandwich, availableMeats());
 
-                            removeToppings("regular topping", selectedSandwich, availableRegularToppings());
+                                removeToppings("cheese", selectedSandwich, availableCheeses());
 
-                            removeToppings("sauce", selectedSandwich, availableSauces());
+                                removeToppings("regular topping", selectedSandwich, availableRegularToppings());
+
+                                removeToppings("sauce", selectedSandwich, availableSauces());
+                            }
+
                         }
                         case 3 -> {
                             done = true;
