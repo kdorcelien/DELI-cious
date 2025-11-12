@@ -62,7 +62,7 @@ public class Menu {
                     showOrderSummary(order);
                 }
                 case "5" -> {
-                    order.addItem(makeSignatureSandwich());
+                    order.addItem(makeSignatureSandwich(order));
                     showOrderSummary(order);
                 }
 
@@ -83,16 +83,17 @@ public class Menu {
             String name = item.getName();
             double price = item.getPrice("");
             if (item instanceof Sandwich sandwich) {
-                System.out.println(sandwich.getSize() +"'inch " + sandwich.getBread());;
-               System.out.println(" is Toasted: " + sandwich.isToasted());
+                System.out.println(sandwich.getSize() + "'inch " + sandwich.getBread());
+                ;
+                System.out.println(" is Toasted: " + sandwich.isToasted());
                 price = item.getPrice(sandwich.getSize());
-                for (Topping topping : sandwich.toppings){
+                for (Topping topping : sandwich.toppings) {
                     System.out.println(topping.getName() + ", is extra: " + topping.isExtra());
                 }
             } else if (item instanceof Drink drink) {
-                System.out.println(drink.getSize() +", "+ drink.getFlavor());
+                System.out.println(drink.getSize() + ", " + drink.getFlavor());
                 price = item.getPrice(drink.getSize());
-            } else if (item instanceof Chips chips){
+            } else if (item instanceof Chips chips) {
                 price = item.getPrice("");
             }
             System.out.printf("%s $%.2f%n", name, price);
@@ -103,7 +104,7 @@ public class Menu {
         System.out.println("Please review your order before confirming.\n");
     }
 
-    private static SignatureSandwich makeSignatureSandwich(){
+    private static SignatureSandwich makeSignatureSandwich(Order<Product> order) {
         System.out.println("Choose a Signature Sandwich:");
         System.out.println("1) BLT");
         System.out.println("2) Philly Cheese Steak");
@@ -112,12 +113,62 @@ public class Menu {
         int choice = scanner.nextInt();
         scanner.nextLine();
 
-        return switch (choice) {
+        SignatureSandwich selectedSandwich = switch (choice) {
             case 1 -> new BLT();
             case 2 -> new PhillyCheeseSteak();
             default -> null;
         };
+
+        if (selectedSandwich != null) {
+            System.out.println("Would you like to customize your order: y/n");
+            String reply = scanner.nextLine().toLowerCase();
+            boolean customize = reply.equalsIgnoreCase("y");
+
+            if (customize) {
+                boolean done = false;
+
+                while (!done) {
+                    System.out.println("\n--- Customize Your Sandwich ---");
+                    System.out.println("1) Add toppings");
+                    System.out.println("2) Remove toppings");
+                    System.out.println("3) View current toppings");
+                    System.out.println("4) Done customizing");
+                    System.out.print("Choose an option: ");
+
+                    int option = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (option) {
+                        case 1 -> {
+                            addToppings("meat", selectedSandwich, availableMeats());
+
+                            addToppings("cheese", selectedSandwich, availableCheeses());
+
+                            addToppings("regular topping", selectedSandwich, availableRegularToppings());
+
+                            addToppings("sauce", selectedSandwich, availableSauces());
+                        }
+                        case 2 -> {
+                            removeToppings("meat", selectedSandwich, availableMeats());
+
+                            removeToppings("cheese", selectedSandwich, availableCheeses());
+
+                            removeToppings("regular topping", selectedSandwich, availableRegularToppings());
+
+                            removeToppings("sauce", selectedSandwich, availableSauces());
+                        }
+                        case 3 -> {
+                            done = true;
+                            System.out.println("Customization complete! " + selectedSandwich.getName() + " added to your order.");
+                        }
+                        default -> System.out.println("Invalid choice. Please try again.");
+                    }
+                }
+            }
+        }
+        return selectedSandwich;
     }
+
 
     private static Sandwich makeSandwich() {
         System.out.println("\n-- Create Your Sandwich --");
@@ -133,15 +184,11 @@ public class Menu {
 
         Sandwich sandwich = new Bread("Custom Sandwich", size, bread, toasted);
 
-
         addToppings("meat", sandwich, availableMeats());
-
 
         addToppings("cheese", sandwich, availableCheeses());
 
-
         addToppings("regular topping", sandwich, availableRegularToppings());
-
 
         addToppings("sauce", sandwich, availableSauces());
 
@@ -166,6 +213,24 @@ public class Menu {
                     case "regular topping", "sauce" -> sandwich.addTopping(new RegularTopping(name));
                 }
             }
+        }
+    }
+
+    private static void removeToppings(String category, Sandwich sandwich, List<String> options) {
+        System.out.println("\nAvailable " + category + "s: " + String.join(", ", options));
+        System.out.print("Enter your choices separated by commas (or press Enter to skip): ");
+        String input = scanner.nextLine().trim();
+
+        if (!input.isEmpty()) {
+            String[] selected = input.split(",");
+            for (String name : selected) {
+                name = name.trim().toLowerCase();
+                String finName = name;
+                sandwich.getToppings().removeIf(
+                        t -> t.getName().equalsIgnoreCase(finName));
+                System.out.println("Removed " + finName + " from your sandwich.");
+            }
+
         }
     }
 

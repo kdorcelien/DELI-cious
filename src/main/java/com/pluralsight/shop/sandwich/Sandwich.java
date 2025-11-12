@@ -15,9 +15,16 @@ public abstract class Sandwich extends Topping {
         this.isToasted = isToasted;
     }
 
+    public List<Topping> getToppings() {
+        return toppings;
+    }
 
     public void addTopping(Topping topping){
         toppings.add(topping);
+    }
+
+    public void removeTopping(Topping topping){
+        toppings.remove(topping);
     }
 
     public double getPrice(){
