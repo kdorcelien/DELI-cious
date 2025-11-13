@@ -148,18 +148,18 @@ public class Menu {
                             addToppings("sauce", selectedSandwich, availableSauces());
                         }
                         case 2 -> {
-                            for (Topping topping : selectedSandwich.toppings) {
-                                System.out.println("Toppings present in your sandwich: " + topping.getName());
-
-                                removeToppings("meat", selectedSandwich, availableMeats());
-
-                                removeToppings("cheese", selectedSandwich, availableCheeses());
-
-                                removeToppings("regular topping", selectedSandwich, availableRegularToppings());
-
-                                removeToppings("sauce", selectedSandwich, availableSauces());
+                            for (int i = 0; i < selectedSandwich.toppings.size(); i++) {
+                                Topping topping = selectedSandwich.toppings.get(i);
+                                System.out.printf("%d) %s%s%n", i + 1, topping.getName(), topping.isExtra() ? " (extra)" : "");
                             }
-
+                            System.out.println("0) Cancel");
+                            System.out.print("Select a topping to remove: ");
+                            int removeChoice = scanner.nextInt();
+                            scanner.nextLine();
+                            if (removeChoice > 0 && removeChoice <= selectedSandwich.toppings.size()) {
+                                Topping removed = selectedSandwich.toppings.remove(removeChoice - 1);
+                                System.out.println(removed.getName() + " was removed from your sandwich.");
+                            }
                         }
                         case 3 -> {
                             done = true;
