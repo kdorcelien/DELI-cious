@@ -97,6 +97,7 @@ public class Menu {
                 price = item.getPrice("");
             }
             System.out.printf("%s $%.2f%n", name, price);
+            System.out.println();
         }
         System.out.println("----------------------------");
         System.out.printf("Running Total: $%.2f%n", order.total());

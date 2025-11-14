@@ -5,3 +5,11 @@ BLT  $10.50
 
 TOTAL: $10.50
 ============================
+===== DELI-cious Order Receipt =====
+Date: Fri Nov 14 11:34:36 EST 2025
+
+8 inch wheat Sandwich  $13.50
+Philly Cheese Steak  $10.50
+
+TOTAL: $24.00
+============================
