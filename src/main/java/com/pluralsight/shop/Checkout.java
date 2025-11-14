@@ -42,8 +42,8 @@ public class Checkout {
 
     private static void saveReceipt(Order<? extends Product> order) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        String fileName = "src/main/resources/receipt: "+ formatter.format(order.getOrderDate()) + ".txt" ;
-        String masterFile = "src/main/resources/receipts.txt";
+        String fileName = "src/main/resources/receipts/receipt: "+ formatter.format(order.getOrderDate()) + ".txt" ;
+        String masterFile = "src/main/resources/receipts/allReceiptsLog.txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("===== DELI-cious Order Receipt =====\n");

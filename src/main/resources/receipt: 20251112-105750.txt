@@ -1,7 +1,0 @@
-===== DELI-cious Order Receipt =====
-Date: Wed Nov 12 10:57:50 EST 2025
-
-BLT  $19.10
-
-TOTAL: $19.10
-============================
